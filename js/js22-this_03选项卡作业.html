@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js22-选项卡</title>
+
+    <!-- <link rel="stylesheet" href="js22-style.css" /> -->
+    <link rel="stylesheet" href="../css/js22-style01.css" />
+  </head>
+  <body>
+    <!-- 每个选项卡代表一个活动的区域。点击不同的区域，即可展现不同的内容 -->
+    <ul class="tab">
+      <li class="act">娱乐新闻</li>
+      <li>体育新闻</li>
+      <li>电影新闻</li>
+      <li>疫情跟踪</li>
+      <div style="clear: both"></div>
+    </ul>
+
+    <ul class="content">
+      <li style="display: block">王俊凯自拍</li>
+      <li>孙杨禁赛八年</li>
+      <li>囧妈免费播出</li>
+      <li>疫情结束啦</li>
+      <div style="clear: both"></div>
+    </ul>
+
+    <script>
+      /* var tabs = document.getElementsByClassName("tab");
+      var contents =document.getElementsByClassName("content") */
+      var acts=document.querySelectorAll(".tab li")
+      var contents=document.querySelectorAll(".content li")
+
+      //给tab里面每个li加onclick  绑定点击事件
+      for(var i=0;i<acts.length;i++){
+         acts[i].index=i           //如何把两个i连接起来，先把i记录下来，用属性，属性值添加的方法，才能拿到对应的新闻内容
+                                  //对象可以随意加属性，属性名不一定必须是关键字，可以是任何文字，a，kkk随意
+                                  //重点：添加属性来记录角标！因为上下两块的i是相对应的/相同的，上面i=1和下面i=1的内容是相符的
+        
+        acts[i].onclick=function(){               //当我点击acts里的li时，contents显示内容display：block
+          //contents[this.index].style.display="block"   //此时，是可以点击标题，当前对应的内容出现。但是新内容出现后，旧内容不会消失
+          
+           
+          //点哪个标题，哪个标题背景颜色高亮==拥有属性class=act
+           for(var i=0;i<acts.length;i++){
+            //acts[i].className=""
+            acts[i].removeAttribute("class")
+          } 
+          this.className="act"
+          //同时，相对应的内容出现，其他内容消失
+          
+
+
+                                                          //现在问题又来了，点击时候的效果全部出现了，但是这么做到让其他内容消失，只有点击内容的效果显示 ？
+
+                                                          //先让全部内容都隐藏，再让当前选中的li对应的内容显示
+
+          for(var i=0;i<contents.length;i++){    
+            contents[i].style.display="none"
+          }
+
+          contents[this.index].style.display="block"
+          
+          
+
+          
+           
+
+
+        }                                             
+
+
+
+      }
+
+
+     /* 这样写是非常不对的，是个坑，很常见
+      function(){
+        contents[i].style.display="block"
+      } */
+
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <title>对象取值 setting</title>
+    <style>
+        .w{background-color:#f8eba3 ;color:#ce7b0e ;height: 50px;width: 500px; font-family: sans-serif;}
+        .h{background-color:#D4DFE6 ;color:#3d68f5 ;height: 50px;width: 500px;font-family: sans-serif;}
+        .g{background-color:#fec8c9 ;color:#bf0603 ;height: 50px;width: 500px;font-family: sans-serif;}
+        .x{background-color:#D4DFE6 ;color:#cf440c ;height: 50px;width: 500px;font-family: sans-serif;}
+        .k{background-color:#D4DFE6 ;color:#390099 ;height: 50px;width: 500px;font-family: sans-serif;}
+    </style>
+    
+</head>
+
+<body>
+
+<div class="h">---------hdfhdf哈数据库的哈士奇就肯定会</div>
+<div class="w">?????????gdfgdf士大夫十分渴望会认为然和</div>
+<div class="g">!!!!!!!!!gdfgdf士大夫十分渴望会认为然和</div>
+<div class="x">*********gdfgdf士大夫十分渴望会认为然和</div>
+<div class="k">&&&&&&&&&gdfgdf士大夫十分渴望会认为然和</div>
+
+<div></div>
+<div></div>
+
+
+   <script>
+       var arr=[{name:"xue"},{age:18,sex:"femme"},{address:[{france:"sceaux",chine:"xj"}]}]
+       //0.1取出属性值xue
+       var nom=arr[0].name //取出属性值第一种方法
+       console.log(nom); //xue
+       //0.2取出属性名name 当对象里只有一个属性
+       for(var key in arr[0]){
+        console.log(key);
+        console.log(arr[0][key]);////取出属性值第二种方法
+       }
+
+       var age=arr[1].age //18
+       console.log(age);
+       for(var key in arr[1]){
+        console.log(key);
+        console.log(arr[1][key]);
+        console.log([key]);
+       }
+
+
+   </script>
+    
+</body>
+
+</html>

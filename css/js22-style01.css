@@ -1,0 +1,30 @@
+li {
+  list-style: none;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.tab li {
+  float: left;
+  width: 120px;
+  height: 50px;
+  text-align: center;
+  background-color: rgb(248, 162, 222);
+  color: rgb(99, 11, 11);
+  margin-left: 1px;
+  line-height: 50px;
+  
+}
+.content li{
+    width: 483px;
+    height: 200px;
+    background-color:  rgb(182, 245, 182) ;
+    display: none;
+    color: rgb(8, 105, 41);
+    line-height: 50px;
+    
+}
+.act{
+        background-color:  rgb(196, 252, 196) !important;
+}

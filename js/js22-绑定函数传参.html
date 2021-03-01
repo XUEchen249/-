@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>js22-事件绑定传递参数</title>
+</head>
+<body>
+    <div class="txt">事件绑定，传递参数</div>
+    <script>
+        //给绑定事件的指定函数传参数
+        function fn(a){
+            alert("hello "+a)
+        }
+        var txt=document.getElementsByClassName("txt")[0]
+        txt.onclick=fn //首先，这里只能是fn，不能带小括号；如果要给fn传参数怎么办？参数必须写在函数的小括号里
+        //txt.onclick=fn(xue) 错误的
+        //正确写法：给要传参的函数fn外面套个匿名函数
+        txt.onclick=function(){
+            fn("xue") //要传的参数是字符串，加引号
+        }
+
+
+
+
+    </script>
+</body>
+</html>

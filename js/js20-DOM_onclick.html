@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>js20-DOM事件--点击</title>
+
+    <style>
+        h1{
+            background-color: rgb(196, 213, 243);
+        }
+        
+        div{
+            background-color: rgb(184, 245, 184);
+        }
+
+        p{
+            background-color: rgb(255, 146, 14);
+        }
+    </style>
+</head>
+<body>
+
+    <h1  id="title" onclick="fn()">第一种绑定方式</h1>  
+    <!-- 当鼠标点击到continue的时候（触发到onclick事件），立即调用fn函数 （fn（）调用 加小括号）
+    因为h1这条元素对象绑定的onclick事件，所以只有点击continue才会触发事件，点击页面别处没有反应，不会触发事件-->
+
+    <div id="box">第二种绑定方式--方法体</div>
+    <p id="containe">第二种绑定方式--先&只有函数  后声明函数</p>
+
+    <script>
+        /**
+         * DOM事件 绑定
+         * //绑定方式： 
+         * //1.在元素的开始标签里面写
+         * //2.js绑定
+         * 1.onclick 点击 无论什么标签都可以使用onclick，并不是只有button标签才可以使用
+         * 
+         */
+       
+       /**
+        * //第一种绑定方式：<h1 >
+        * * 1.先在元素的开始标签里写，把onclick当作属性名，函数当做属性值，onclick=“fn（）” 整体当作标签的一个属性
+        * *  就像 class=“title”一样 
+        * ! <  事件名="函数名（）">    加小括号!!! 当点击的时候，就会触发这个函数
+        * * 2. 然后再在script里写function函数的具体内容
+        */
+         
+            function fn(){
+                alert("绑定方法一，1.1事件名=函数名（）")  //此时，当我点击页面的内容时，触发onclick事件，那么就会立即调用fn函数
+            }
+
+        
+
+
+
+        /**
+         * //第二种绑定方式：<div>
+         * *1.直接在script里写
+         * *2.
+         * *3.函数的两种声明方式 
+        */
+        var box=document.getElementById("box")//先拿到div这条元素对象
+        box.onclick=function(){ alert("第二种绑定方式--2.1方法体")} //就像给box对象新建/添加属性一样，给box新建一个叫onclick的属性，onclick是属性名
+                                                        //这个属性的属性值是=等号右边的函数
+                                                        //
+
+        var containe=document.getElementById("containe")//先拿到p这条元素对象
+        
+        containe.onclick=fn1;
+        function fn1(){
+            alert("第二种绑定方式--2.2先&只有函数名 后声明函数")
+        }
+
+  
+
+
+
+         
+      /** //两种写方法function 的方式
+
+        //第一种
+      * ?为什么函数（） 
+        title.onclick=fn  //直接跟函数名，没有小括号。
+                        //如果加了小括号，那就是调用了==>加括号后表示立即执行，不加括号一般用在触发某个事件后才执行
+                        
+
+        function fn() {
+            alert("太棒了！正确")
+        } 
+    */
+     /*  title.onclick=f1()//在打开页面的时候，先出现弹框，点击弹框以后，再出现加载以后的页面内容 因为这里还没有点的时候，fn函数已经被调用了
+        function f1() {
+            alert("fn加了括号（）")
+        }  
+      */
+     
+        //第二种 方法体
+        //title.onclick=function(){alert("太棒了！正确")}
+
+     
+
+    </script>
+</body>
+</html>

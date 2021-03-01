@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>JS18</title>
+
+    <style>
+      .red {
+        color: brown;
+        font-size: 30px;
+       
+      }
+    </style>
+  </head>
+  <body>
+     <div class="box" id="01"></div>
+    <div class="box" id="02">
+      <div class="aaa" >hello</div> 
+    </div> 
+
+    <ul id="list1">
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+    </ul>
+
+    <ul id="list2">
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+    </ul>
+
+    <ul id="list3">
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+      <li>1</li>
+    </ul>
+   
+  </body>
+  <script>
+    /* //change all class name to bbb
+    var change=document.querySelectorAll("div")
+    for(var i=0;i<change.length;i++){
+        change[i].className="bbb"
+    }
+    console.log(change); */
+
+    //给list2 加红 字码加大
+    //1.find list2
+    var list2 = document.getElementById("list2");
+    console.log(typeof list2); //object
+    list2.className = "red";
+    console.log(list2);
+
+    //给list3里的li全部加红加大字码
+    var list3=document.querySelectorAll("#list3 li")
+    console.log(list3);
+    console.log(typeof list3); 
+    list3.className="red "
+    console.log(list3);
+
+  
+
+
+
+
+  </script>
+</html>

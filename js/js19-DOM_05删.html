@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>JS19-DOM 删除</title>
+  </head>
+  <body>
+    <div class="title" id="aaa" style="color: rgb(177, 21, 52)">
+      <p>1</p>
+      <p>12</p>
+      <p>123</p>
+    </div>
+
+    <script>
+      var title = document.getElementsByClassName("title")[0]; //title是数组
+      //var p = document.getElementsByTagName("p")[0];
+       var p=document.getElementsByTagName("p")
+    
+      for(var i=0;i<p.length;i++){
+        title.removeChild(p[i])
+      } /**
+       * *永远删不了 （第一次删除前的第一个）第一次删除后的0 
+       * *因为第一次删除后（i=0），
+       * *原来索引为0的被删除，全体元素向前移动一位，原来索引为1的变为索引0，原来索引为2的变为索引1....以此类推
+       * *然后开始第二次删除 i=1
+       * *那就删除索引为1（原来索引为2）的元素....
+       * *
+      */
+      
+
+      //3 removechild
+
+      
+
+      
+      //删除div里的3个p标签  删除父元素对象里的全部子元素对象
+
+
+
+     /*  //方法一 挨个手删  只适合数量少的，万一有很多子元素对象怎么办？
+       var p = document.getElementsByTagName("p")[0];
+      title.removeChild(p) 
+
+      var p = document.getElementsByTagName("p")[0];
+      title.removeChild(p) 
+
+      var p = document.getElementsByTagName("p")[0];
+      title.removeChild(p)  
+      
+      //方法二 倒着删除
+      var p = document.getElementsByTagName("p")
+
+      for(var i=p.length-1;i>-1;i--){
+        title.removeChild(p[i])
+      }
+      
+      //方法三  innerHTML 简单粗暴
+      title.innerHTML=""
+      
+      */
+
+
+/* 
+      var pp=document.getElementsByTagName("p")[1];
+      title.removeChild(pp)
+
+      var ppp=document.getElementsByTagName("p")[2];
+      console.log(ppp); //undefined
+
+     // title.removeChild(ppp) */
+
+
+    
+
+
+      
+
+    /* var p=document.getElementsByTagName("p")
+    console.log(p);
+      for(var i=0;i<p.length;i++){
+        title[0].removeChild(p[i])
+      } */
+
+
+      /**
+        
+      ** 1 innerHTML 删除始末标签里的所有内容 文本+内嵌标签
+        title[0].innerHTML="" //注意！ 这里title是数组，虽然里面只有一个元素，使用的时候必须通过下角标的方式去访问
+
+      ** 2  removeAttribute
+        title[0].removeAttribute("style")  //直接删除想要删的 属性， 直接写属性名就ok
+        title[0].removeAttribute("class")  //这里class 不用写成classname，因为这里是string 
+      
+      ** 3 使用for循环，倒着顺序 从后往前删除  
+       
+       */
+    </script>
+  </body>
+</html>

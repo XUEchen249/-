@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>JS19-DOM练习</title>
+</head>
+<body>
+    <div id="title" ></div>
+
+    <script>
+        /**
+    ** 要求：body里的空div里，通过js加一个ul里面包含四个li，有四个变量分别是  
+    ** 要求四个li每一个的颜色随机，字体大小在12-50px之间随机
+        */  
+
+        var colors=["red","blue","yellow","pink"]  
+        var fontSize=Math.floor(Math.random()*(50-12+1)+12)
+        var i=Math.floor(Math.random()*(3-0+1)+0)
+        
+        //定位找到
+        var title=document.getElementById("title")
+        //添加ul 四个li
+
+         title.innerHTML="<ul>"+
+                            "<li style='font-size:"+fontSize+"px; color:"+colors[i]+";'>LIST1</li>"+
+                            "<li style='font-size:"+fontSize+"px; color:"+colors[i]+";'>LIST2</li>"+
+                            "<li style='font-size:"+fontSize+"px; color:"+colors[i]+";'>LIST3</li>"+
+                            "<li style='font-size:"+fontSize+"px; color:"+colors[i]+";'>LIST4</li>"+
+                        "</ul>" 
+        
+    </script>
+    
+</body>
+</html>

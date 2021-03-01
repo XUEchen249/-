@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+
+  <body>
+    <script>
+      var obj = {
+        name: "xue",
+        age: 26,
+        intr: function () {},
+        hobby: ["run", "walk", "jump", "swimme"], //对象里可以有数组
+        ecole: { name: "EPF", genre: "ingenieur", adress: "sceaux" }, //对象里可以有对象
+      };
+       //对象obj里的数组hobby循环
+      for (var i = 0; i < obj.hobby.length; i++) {
+        obj.hobby[i] = "I like " + obj.hobby[i];
+        console.log(obj.hobby[i]);
+      } 
+      //对象obj里的对象ecole循环
+      for (var key in obj.ecole) {
+        console.log(key);//输出全部属性名key  对象ecole里的全部属性名
+        console.log(obj.ecole[key]);//输出全部属性值value
+      } 
+      console.log(obj.hobby);//取数组hobby里的全体数据
+      console.log(obj.ecole);//取对象ecole里的全体键值
+
+      
+
+       for (var key in obj) {
+        //console.log(key);// 单取全部key 属性名
+        //console.log(obj[key]);//单取全部value 值
+        //console.log(obj);//输出五次obj全体
+      } 
+    </script>
+  </body>
+</html>

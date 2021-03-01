@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>JS19 面试题</title>
+  </head>
+  <body>
+    <script>
+      //面试题 1.实现a,b两个对象的value值互换
+      var a = { a: 1, value: 1 };
+      var b = { b: 2, value: 2 };
+      var temp;
+      var c = { c: temp, value: temp };
+      //顺序是关键
+      c.value = a.value;
+      a.value = b.value;
+      b.value = c.value;
+
+      console.log(a);
+      console.log(b);
+      console.log(c);
+      //console.log("a.value = "+ a.value);
+      //console.log("b.value = "+b.value);
+
+      //面试题 2.循环输出第一，二，四个的值
+      var jsonObj = {
+        listData: [{ data: 11 }, { data: 22 }, { data: 33 }, { data: 44 }],
+      };
+
+      var temp = []; //？为什么放到这里就ok
+
+      for (var i = 0; i < jsonObj.listData.length; i++) {
+        if (jsonObj.listData[i].data !== 33) {
+          //var temp=[]; 放到这里就只有一个结果 temp难道不是全局变量吗？var声明提前啊 每次都要再重新声明一次
+          temp.push(jsonObj.listData[i].data);
+        }
+      }
+      console.log(temp);
+
+      /*  /* var a="1"
+      
+      var b="2"
+      var a={a:a,b:b}
+      
+      b=a.a
+      a=a.b
+      console.log(a,b);  
+      var arr=[1,2,3,"a","b","c"]
+      //var q=arr.splice(3,1,arr[0])
+                                 /* console.log(q);//删除的[“a"]
+                                console.log(arr.splice(3,1,arr[0]));//最终修改后的结果 [1 ] 
+      arr[0]=arr.splice(3,1,arr[0])[0]
+      console.log(arr.toString());
+      //arr[0]=arr.splice(3,1,arr[0])
+    */
+      /**
+     
+       * todo hell
+       * * 这里的额
+       * !为什么
+       * @hhs
+       * ?注意
+       * //hihi
+       * 
+       * 
+      */
+    </script>
+  </body>
+</html>

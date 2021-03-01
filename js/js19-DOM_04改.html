@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JS19 DOM 改</title>
+    <style>
+      .box {
+        background-color: rgb(172, 221, 124);
+        height: 50px;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="title"><p>你好</p></div>
+    <script>
+             var title=document.getElementById("title")
+ title.innerText="COURAGE" 
+ title.innerHTML="COURAGE!!" 
+ title.innerHTML="" 
+
+             //引号嵌套里 使用变量  用拼接的方式
+             var box="nav"
+             var rouge=["red","green","black","bleu","yellow","pink"]
+             
+            
+            
+             //引号嵌套 
+          
+
+               /*  title.innerHTML="<ul class=box></ul>" //无反应
+             title.innerHTML="<ul class="+box+"></ul>" // <ul class="nav"></ul> */
+
+
+             //title.innerHTML="<ul><li>LIST1</li><li>LIST2</li><li>LIST3</li><li>LIST4</li></ul>" //通过innerHTML给页面加列表标签
+             /* es6
+             title.innerHTML=`<ul class='box'>
+                <li style='color:red'>LIST1</li>
+                <li>LIST2</li>
+                <li>LIST3</li>
+                <li>LIST4</li>
+                </ul>` */
+             
+            /* 原始方法
+                 title.innerHTML="<ul class='box'>"+
+                 "<li style='color:red'>LIST1</li>"+
+                 "<li>LIST2</li>"+
+                 "<li>LIST3</li>"+
+                 "<li>LIST4</li>"+
+                 "</ul>" */
+
+
+            /* //读取
+             console.log(title.innerText);  //你好
+             console.log(title.innerHTML);  //<p>你好</p>
+
+             //更改赋值
+             title.innerText="<h1>加油</h1>" //innerText先把始末标签里的内容全部清空，再赋值进去  而且不认标签
+             title.innerHTML="<h1>加油</h1>" //innerHTML 认标签 */
+      
+    </script>
+  </body>
+</html>

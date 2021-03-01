@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js22-选项卡自己练习</title>
+    <link rel="stylesheet" href="../css/js22-style01.css" />
+  </head>
+  <body>
+    <ul class="tab">
+      <li class="act">娱乐新闻</li>
+      <li>体育新闻</li>
+      <li>电影新闻</li>
+      <li>疫情跟踪</li>
+      <div style="clear: both"></div>
+    </ul>
+
+    <ul class="content">
+      <li style="display: block">王俊凯自拍</li>
+      <li>孙杨禁赛八年</li>
+      <li>囧妈免费播出</li>
+      <li>疫情结束啦</li>
+      <div style="clear: both"></div>
+    </ul>
+
+    <script>
+      var acts = document.querySelectorAll(".tab li");
+      var contents = document.querySelectorAll(".content li");
+      
+      for(var i=0;i<acts.length;i++){
+        acts[i].index=i
+        acts[i].onclick=function(){
+            //先全部清除效果 
+            for(var i=0;i<acts.length;i++){
+                acts[i].className=""
+            }
+            for(var i=0;i<contents.length;i++){
+                contents[i].style.display="none"
+            }
+            //再，设置点击时候的效果，点击谁，出现谁
+            this.className="act"  //这里的this是哪个的this  acts/contents？ 哪个调用函数，this就指的是哪个
+                                  //只有函数执行的时候才能确定this到底指向谁，实际上this的最终指向的是那个调用它的对象
+            contents[this.index].style.display="block"
+            //这里 this指代的是对象，是数组里的每个元素对象acts[0]/acts[1]... 不是数组acts，不能写成this[i]
+        }
+      }
+
+
+     
+    </script>
+  </body>
+</html>

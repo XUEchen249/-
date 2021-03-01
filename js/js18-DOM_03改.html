@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>js18 dom-read03</title>
+    <style>
+      .box{color: rgb(233, 107, 126);}
+    </style>
+  </head>
+  <body>
+    
+    <div class="box" id="title" style="height: 50px;width: 300px;background-color: rgb(250, 215, 17);margin-left: 50px;">stay safe!</div>  
+    
+
+    <script>
+      
+      /**
+       * *style里的属性
+       * *js不能访问外部样式，js只能访问开始标签内的属性
+       * *
+      */
+      //innerText 读取开始标签到结束标签之间的文字内容
+      var title=document.getElementById("title") //定位
+
+      title.innerText="前端学习" //页面改变内容
+    
+      var text=title.innerText; 
+      text="前端学习"//只是控制台显示-->前端学习  页面没有改变
+
+      /**
+       * ?为什么直接使用title.innerText就可以改变页面内容，但是被存为text的时候，页面没有改变，只有控制台显示有改变
+       * *讲string对象的时候，不是说字符串不能直接修改，必须重新赋值后再修改吗？
+       * *那么时候时候可以直接使用，不用声明新变量，赋值后再使用？
+      */
+     
+      console.log(text);
+
+
+
+     /* 
+     
+     
+     //setAttribute
+        //find
+        var title=document.getElementById("title")
+
+        console.log(title);//整条元素对象
+        console.log(document.getElementById("title"));//结果和上面的一模一样
+        console.log(typeof(title));//object
+
+        console.log(document.getElementById("title").style);//style内的指全部都显示了
+        console.log(typeof(document.getElementById("title").style));//object
+       /**
+        * * 通过document.getElementById("title")找到整条元素后，document.getElementById("title")就代表整条元素，但是每次都要这样写一大长串太麻烦，所以就新声明一个变量title，把document.getElementById("title")的值储存/赋值给title，后面再次使用的时候就很方便。就是给document.getElementById("title")起个简单的名字方便后续书写调用方便
+        
+        
+        console.log(title.style.backgroundColor);//rgb5645
+        //add border-radius
+        title.style.borderRadius="10px"; //加引号
+        //read color
+        console.log(title.style.color);//外联样式，js不能读取
+
+        //setAttribute(,)
+        title.setAttribute("class",10)//修改属性 
+       
+        /**
+         * ! title.style.setAttribute("marginLeft","200px")//error style虽然是对象，但是它是属性
+         * */  
+
+       
+
+    </script>
+  </body>
+</html>

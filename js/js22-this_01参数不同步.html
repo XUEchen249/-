@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>js22-this分析for循环里的i不同步 </title>
+  </head>
+  <body>
+    <ul>
+      <li>张三</li>
+      <li>李四</li>
+      <li>王五</li>
+    </ul>
+
+    <script>
+      //目标：点击张三的时候，跳出弹框，弹筐里写张三，点击谁，弹框输出谁的名字
+      /**
+       * 基本想法/思路：
+       * 先拿到三个li元素，再给每个li元素绑上onclick事件和function
+       * 2.绑定事件和函数： 编程就是把文字性的思路/思想/想法 用code写出来，让程序执行，输出/达成想要的/目标结果
+       * 那么，绑定事件这里就是：给一个元素对象绑定一个事件，当我们触发这个事件的时候，程序会执行某种操作。
+       * 比如，给一个元素对象绑定onclick事件==当点击这个对象的时候，程序会输出元素里的文字内容。
+      */
+      var lis = document.getElementsByTagName("li"); //lis是数组
+      for (var i = 0; i < lis.length; i++) {
+        lis[i].onclick = function () {
+          alert(lis[i].innerText);
+        }; //当我们在循环里给每个lis的元素绑定事件时候，有没有执行绑定的函数？  没有，因为函数不调用，如同没写。函数不调用，就不会执行！！金科玉律记死了
+        //那也就是说，没有点击onclick（=调用函数）的时候，绑定的函数是不会执行的
+      }
+      
+      //我们可以把for循环拆开&模拟每个循环流程来写，每个lis[i]单独写出来
+      //从i=0开始，i=1 i=2结束
+      lis[0].onclick = function () {
+        alert(lis[i].innerText); //这里是lis【i】，不是【0】函数没有执行，i=0就不能带入；因为函数不执行就等于没写，可以把函数遮起来当作不存在
+      };
+      lis[1].onclick = function () {
+        alert(lis[i].innerText);
+      };
+      lis[2].onclick = function () {
+        alert(lis[i].innerText);
+      };
+      //此时，在for循环里，循环走完以后，i等于几？ i=2？？错误， i=3 才是正确的
+      i = 3;
+      //以上就是for循环里的所有操作==>1.给每个li元素绑定了onclick属性 2.且给onclick属性绑定的函数 function（）{alert(lis[i].innerText);} 3.最后输出/给i赋值3 i=3
+      
+      //现在，我们开始触发事件，调用函数
+      //点击第一个元素
+      lis[0].onclick=function(){
+        alert(lis[3].innerText); //重点！！这里i=3，不等于0   
+      } //错误 绑定了，没执行等于没写，执行的时候i=3，但是数组里lis[3]是不存在的，数组里只有lis[0],lis[1],lis[2]
+
+      /**
+       * !迷惑点：面试重要点
+       * lis[i].onclick = function () {alert(lis[i].innerText)}; 前后两个i的值不同步，不相等。
+       * 以前遇到的for循环中 等号 = 前后的i都是同步相等的.但是在这里不同步，不相等
+       * 函数只有在调用的时候，才会传入参数，不调用，不传参。那么，当我们调用函数的时候，函数会传入参数i，此时i是几？（重点！）
+       * 全局就只有一个i，而且在参与for循环之后，i从最初的赋值（初始值）i=0，变成i=3，那么此时传入函数的参数是3
+       * 那么，无论点击哪个lis的元素，函数执行的i始终是3（函数里的参数始终是3），lis【3】又不存在，所以报错
+       *!for循环的时候，lis[]中括号里面i不断赋值变化/增长，但是函数里的i始终不变，不赋值。
+       *!直到调用函数的时候，函数里的i才会被赋值/发生变化，而且被赋值为3。（i在for循环里，i++自增，最后i从0变成3）
+       *!函数里的i并不是与lis[]中的i同步变化
+
+      */ 
+      //这里是面试重点题
+      
+
+
+      /*
+      //正确写法
+       for (var i = 0; i < lis.length; i++) {
+        lis[i].onclick = function () {
+          alert(this.innerHTML);
+        };
+      } */
+
+      
+    </script>
+  </body>
+</html>

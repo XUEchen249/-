@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>js21 登陆界面验证</title>
+    <link rel="stylesheet" type="text/css" href="js21-登陆界面.css" />
+    <style></style>
+  </head>
+
+  <body>
+    <!-- 第一步：用html css先把页面全部写出来 包括要隐藏的红色提示-->
+
+    <div id="wrap">
+      <div id="title">
+        <h3>登陆界面</h3>
+      </div>
+
+      <div class="box">
+        <input id="user" type="text" placeholder="请输入用户名" />
+        <span class="wrong_user">用户名格式不对</span>
+        <img src="js21_user.png" width="50px" />
+      </div>
+
+      <div class="box">
+        <input id="psd" type="password" placeholder="请输入密码" />
+        <span class="wrong_psd">密码格式不对</span>
+        <img id="psdeye" src="js21_eyes-closed.png" width="50px" />
+      </div>
+
+      <div class="box">
+        <input id="conpsd" type="password" placeholder="请确认密码" />
+        <span class="wrong_conpsd">两次密码不一致</span>
+        <img id="conpsdeye" src="js21_eyes-closed.png" width="50px" />
+      </div>
+
+      <button>登录</button>
+    </div>
+
+    <script>
+      // 第二步：开始用js写功能，操作
+
+      //1 先把需要使用的变量全部集中声明一下
+
+      //1.1先拿到所有需要使用/绑定事件的元素
+      var user = document.getElementById("user");
+      var pds = document.getElementById("psd");
+      var conpsd = document.getElementById("conpsd");
+
+      var wrong_user = document.getElementsByClassName("wrong_user")[0];
+      var wrong_psd = document.getElementsByClassName("wrong_psd")[0];
+      var wrong_conpsd = document.getElementsByClassName("wrong_conpsd")[0];
+
+      var button = document.getElementsByTagName("button")[0];
+
+      var psdeye = document.getElementById("psdeye");
+      var conpsdeye = document.getElementById("conpsdeye");
+
+      //1.2要验证用户名，密码输入的格式是否正确，那就要写regExp正则表达式
+
+      // var reg1=/[a-zA-Z0-9]{4,8}/  //userReg1.不严谨 2.一个[]代表一位字符
+      var reg1 = /^\w{4,8}$/; //userReg
+      var reg2 = /^\d{6}$/; //psdReg
+
+      //2.绑定事件
+
+      //2.1 用户名  实际检测的是表单的value
+      user.onblur = function () {
+        if (reg1.test(user.value)) {
+          wrong_user.style.display = "none";
+        } else {
+          wrong_user.style.display = "inline";
+        }
+      };
+
+      //2.2输入密码
+      psd.onblur = function () {
+        if (reg2.test(psd.value)) {
+          wrong_psd.style.display = "none";
+        } else {
+          wrong_psd.style.display = "inline";
+        }
+
+        if (conpsd.value) {
+          if (conpsd.value === psd.value) {
+            wrong_conpsd.style.display = "none";
+          } else {
+            wrong_conpsd.style.display = "inline";
+          }
+        } else {
+        }
+      };
+
+      //2.3验证密码
+      conpsd.onblur = function () {
+        if (conpsd.value === psd.value) {
+          wrong_conpsd.style.display = "none";
+        } else {
+          wrong_conpsd.style.display = "inline";
+        }
+      };
+
+      //2.4 眼睛一睁，一闭 一天过去了
+      //2.4.1 输入密码行 点第一次，睁眼明码 ，但是点第二次没反应 怎么切换睁眼/闭眼==>用password
+
+
+      psdeye.onclick = function () {
+       if (psd.type === "password") {
+          psd.type = "text";
+          psdeye.src = "js21_eyes-open.png";
+        } else {
+          psdeye.src = "js21_eyes-closed.png";
+          psd.type = "password";
+        }
+  
+        
+              //? 同样是使用属性，如果我用psyeye.src为什么不行？  
+               
+           /*    //if(psdeye.src=="js21_eyes-closed.png"){
+              if(psdeye.src=="js21_eyes-closed.png"){
+               
+                    psd.type="text"
+                    psdeye.src="JavaScript/js21_eyes-open.png"
+
+                }else{
+                  
+                        psdeye.src="JavaScript/js21_eyes-closed.png"
+                        psd.type="password"
+
+
+                    }     */           
+      };
+
+
+      //2.4.2 验证密码行 眼睛一睁一闭
+      conpsdeye.onclick = function () {
+        if (conpsd.type === "password") {
+          conpsdeye.src = "js21_eyes-open.png";
+          conpsd.type = "text";
+        } else {
+          conpsd.type = "password";
+          conpsdeye.src = "js21_eyes-closed.png";
+        }
+      };
+
+      /**
+       * ?button的if判断，我的想法：只要3个input的value不为空且都正确，就算登陆成功， 这样写虽笨，但是测试有效
+      */
+      //2.4 button
+      button.onclick = function () {
+        if (
+          (user.value !== "") &
+          (psd.value !== "") &
+          (conpsd.value !== "") &
+          (wrong_user.style.display == "none") &
+          (wrong_psd.style.display == "none") &
+          (wrong_conpsd.style.display == "none")
+        ) {
+          alert("登陆成功");
+        } else {
+          alert("失败");
+        }
+      };
+
+      /**
+       * 作业要求：写一个登陆界面 有:
+       * 1.用户名---4-8位数字字母组合 如果用户名输入不正确，出现一行红字提示用户名不合法；如果正确，红字码不显示
+       * 2.密码---6位纯数字---如果密码输入不正确，出现一行红字提示密码格式不正确；如果正确，红字码不显示
+       * 3.确认密码---同上---如果两次输入的而密码不一致，红字码出现提示两次填写的密码不合适
+       * 4.登录---button---如果上面任何一项出错的话，点击登录的时候，都会alert弹出请填写正确信息；如果三项都写对的话，点击登录alert弹出登陆成功
+       */
+    </script>
+  </body>
+</html>
+
+
+
+
+

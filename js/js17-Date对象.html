@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>js17-Date对象</title>
+  </head>
+  <body>
+    <script> 
+    /*
+     // 随机取4位验证码
+        var codes = [];
+
+       for (var i = 48; i <= 57; i++) {
+        codes.push(String.fromCharCode(i));
+      }
+
+      for (var j = 65; j < 91; j++) {
+        codes.push(String.fromCharCode(j));
+      }
+
+      for (var k = 97; k < 123; k++) {
+        codes.push(String.fromCharCode(k));
+      }
+
+      console.log(codes); 
+      for (var i = 48; i < 123; i++) {
+        if (
+          (i >= 48 && i <= 57) ||
+          (i >= 65 && i <= 90) ||
+          (i >= 97 && i <= 122)
+        ) {
+            var index=String.fromCharCode(i)
+          codes.push(index);
+        }
+      }
+
+      console.log("all codes " + codes);
+
+      var temp = [];
+      for (var m = 0; m < 4; m++) {
+          var index=codes[Math.floor(Math.random() * (61 - 0 + 1) + 0)]
+        temp.push(index);
+      }
+      console.log("the temp " + temp);
+
+      var theFourCodes;
+      theFourCodes = temp.join(" ");
+      console.log("the four codes are: " + theFourCodes);
+
+    */
+      var now = new Date()
+      console.log(now);
+      var date=now.getDate()
+      console.log(date);
+      var newDate=now.setDate(24)
+     
+      console.log(newDate);
+      console.log(now);
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <script src=".js"></script> -->
+    <title>数组去重</title>
+</head>
+<body>
+    <script>
+        //[0-9]重复3次
+        var reg=/[1][0123456789][0123456789][0123456789]/
+        var reg=/[1][0-9][0-9][0-9]/ 
+        var reg=/[1][0-9]{3}/    
+        
+        //[1][0-9]一起重复3次
+        var reg=/[1][0-9][1][0-9][1][0-9]/  
+        var reg=/([1][0-9]){3}/
+        
+        var num=121212
+        console.log(reg.test(num)); //true
+
+        var num2=123456
+        console.log(reg.test(num2));  //false
+
+        var reg2=/[1][1][1][0-9][0-9][0-9]/
+        var reg2=/\w\s/
+        
+        var num3="_ "
+        console.log(reg2.test(num3)); //true
+
+    
+        
+        var reg3=/[1][0-9]{6,9}/   //[0-9]重复至少6次，最多9次  7~10个字符
+        var reg4=/[1][0-9]{6,}/    //[0-9]重复至少6次，上不封顶  至少7个字符
+        
+    
+
+        var reg5=/[1][0-9][_][a-z][ ][kjkji]/
+            reg5=/1\d\w\w\s./
+            var num4="15_D z"
+            console.log(reg5.test(num4));//true
+
+
+        var reg6=/^[1]*b+c?$/
+        var num5="1"
+        console.log(reg6.test(num5));
+
+
+    </script>
+</body>
+</html>

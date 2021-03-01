@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      /* //给123前面加星期
+      var obj=[123,[2,[1,2,3],4],"hello",true]
+      for (var i=0;i<obj[1][1].length;i++){
+        obj[1][1][i]="星期"+obj[1][1][i]
+      };
+      console.log(obj[1][1]);//星期1，星期2，星期3
+         */
+
+
+      /* value 使用全局变量：直接用
+      var name = "julie" 
+      var obj={name:name} 
+      console.log(obj);
+       */
+      
+      /* key使用全局变量 ：[key] 给key加中括号 
+      var name="lastname"
+      var obj={[name]:"julia"}      
+      console.log(obj);//{lastname:julia}  */
+
+      /* 
+      //调用对象里的函数： 对象.属性  对象的属性
+      var obj={intr:function(){alert("salut")}}
+      obj.intr()//salut弹窗 这句代码意思是：调用obj对象里的intr函数
+      obj.intr //无显示  因为少了（），函数没有被调用，如同没写
+      intr()//intr is not defined  intr（）是被定义在obj里，而不是写在全局，所以要指明它是哪个对象里的属性（它在哪，是谁的） 
+      
+      console.log(obj.intr);//f(){alert("salut")}  没有加（），输出的是函数整条语句  intr 和 intr（）的区别
+      */
+     
+      
+      /* var obj={name:"sara",age:27,height:180,hobby:["nager","cuisine"],intr:function(){alert("sara")}}
+      
+     /*  //f1 输出value值
+      console.log(obj.name);
+      console.log(obj.age);
+      console.log(obj.hobby); */
+     // console.log(obj);//输出全部的key和value
+      
+      //f2
+      /* for (var key in obj) { //这里的key是obj里所有属性的统称 key在这是形参
+       // console.log(obj.key) // undifend 单独一个属性 
+                              //程序会寻找obj里的名为key属性，此时的key和name，age功能一样，都是属性 
+        //console.log(obj[key])//显示所有的值
+        //console.log(key);//显示所有的属性名
+        console.log(key+":"+obj[key]);
+      } */ 
+      
+/* 
+      for in 和for 的区别
+      for in 用在遍历对象的属性 ，不能用在迭代数组
+      for  用来迭代数组里的数据
+
+      
+      var obj={hobby:["ball","bike","swimme"]}
+
+      //只是拿到了obj里的hobby属性
+      for(var key in obj){
+          console.log(obj[key]); 
+      }
+
+      //拿到数组hobby里的所有数据
+      for(var i=0;i<obj.hobby.length;i++){
+        console.log(obj.hobby[i]);
+      }
+ */
+/* 
+    var obj={hobby:["ball","bike","swimme"],name:"xue"}
+    obj={nom:"chen"}
+    obj=[chen,xue] */
+      //只是拿到了obj里的hobby属性
+      
+    /* console.log(obj.name)//xue
+    console.log(obj[name])//undefined */
+   /*  for(var hobby in obj){
+      console.log(obj.hobby);
+      console.log(obj[hobby]);
+    }
+     */
+    
+    
+   
+    
+
+    
+     
+    
+    
+    
+    
+    
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>JS19-DOM增加</title>
+</head>
+<body>
+    <div id="title">
+        <p>123</p>
+    </div>
+    <script>
+        //增加属性
+        //1.通过对象的形式
+        var title=document.getElementById("title") //此时title是对象
+        title.className="num"
+        //2.setAttribute
+        title.setAttribute("name","test")
+        title.setAttribute("style","color:red; font-size:50px")
+
+        //增加子元素
+        var a=document.createElement("h1") 
+        a.innerText="456"
+        a.className="text"
+        a.id="txt"
+        a.setAttribute("style","color:black")
+        title.appendChild(a)
+
+        var picture=document.createElement("img")
+        picture.src="js19-picture01.png"
+        title.appendChild(picture)
+        
+    </script>
+</body>
+</html>

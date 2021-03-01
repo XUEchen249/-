@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS20</title>
+    <style>
+      table {
+        border: 2px solid blueviolet;
+        height: 80px;
+        width: 500px;
+        border-collapse: collapse;
+      }
+      td {
+        border: 2px solid rgb(44, 36, 36);
+        height: 50px;
+        text-align: center;
+      }
+      tr {
+        border: 2px solid yellow;
+        height: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var jsonData = [
+        { name: "张三", age: 20, salary: 5000, address: "上海" },
+        { name: "李四", age: 22, salary: 6200, address: "北京" },
+        { name: "王五", age: 35, salary: 3360, address: "青岛" },
+        { name: "赵六", age: 46, salary: 8850, address: "杭州" },
+      ];
+
+      //创建表格
+      /**
+       *
+       * ? 测试
+       * * 用js创建元素三部/js写出body里没有的元素
+       * 1 creatElement创建 只是系统里有了这个对象，但不显示
+       * 2 指定位置，在哪显示
+       * 
+       */
+
+      //1.创建一个表格 table 先画好一个框
+      var table = document.createElement("table"); //只是系统里有了这个对象，但不显示
+      document.body.appendChild(table); //把table放到body里 因为要在body里显示表格
+      //2.表格里创建表头（行 tr） 再在框里画出一行
+      var tr = document.createElement("tr"); //创建tr
+      table.appendChild(tr); //把tr放到table里
+
+      /*  var tr2 = document.createElement("tr"); //创建tr
+                                table.appendChild(tr2);  */
+
+      //3.创建表格 有几个属性，就画几个单元格
+
+      //创建表头 单元格
+      var firstRow = jsonData[0]; //第一行
+
+      //tr.appendChild(td); //此时，第一行里有一个单元格，那么总共要写几个单元格？取决于对象里有几个属性 至于单元格里放什么 后面再说
+      for (var key in firstRow) {
+        var td = document.createElement("td");
+        td.innerHTML = key; //这里key不加引号，key是关键字
+        tr.appendChild(td);
+      }
+
+      //创建单元行
+      /**
+       *  1.循环套循环
+       *  2.数组--for循环 数组里的元素个数==表格的行数
+       *  3.对象--for in循环 对象里的属性个数==每行里的单元格数  属性名==表头内容  属性值==表里的数据内容
+       *
+       */
+      for (var i = 0; i < jsonData.length; i++) {
+        var tr = document.createElement("tr"); //创建tr单元行
+        table.appendChild(tr); //把tr放到table里 把单元行放到表格里
+
+        for (var key in jsonData[i]) {
+          var tdd = document.createElement("td"); //创建td单元格
+          tr.appendChild(tdd); //把单元格放到行里去
+          tdd.innerHTML = jsonData[i][key];
+        }
+      }
+    </script>
+  </body>
+</html>

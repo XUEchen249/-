@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>js22-this_02</title>
+    <script>
+      //lis[0].onload = function () {      只有window才能调用onload
+      window.onload = function () {
+        console.log("onload"); //表示当全部页面加载完后，输出clg
+      };
+    </script>
+  </head>
+  <body>
+    <ul>
+      <li>张三</li>
+      <li>李四</li>
+      <li>王五</li>
+    </ul>
+    <script>
+      //目标：点击张三的时候，跳出弹框，弹筐里写张三，点击谁，弹框输出谁的名字
+      /** 一
+       * 1.this不能凭空写，this一般写在方法里/函数里
+       * 2.this指代的是当前正在调用/触发的对象。只能是对象，不可能是number/string/boolean/array
+       * 3.this指的是函数运行时所在的对象，谁（哪个对象）调用函数，this就指谁
+       */
+      var lis = document.getElementsByTagName("li");
+      for (var i = 0; i < lis.length; i++) {
+        lis[i].onclick = function () {
+          alert(this.innerText); //this指的是函数运行时所在的对象，这样就解决了i不同步的问题。此时，有了this，i就会同步了
+        };
+      }
+      /**
+       * 1.this==代替的是当前/现在这个时刻使用/调用/触发的对象，不是函数。
+       * 2.alert(this.innerText) 解决了 alert(lis[i].innerText)中i不同步的问题。
+       * 3.当我们在页面上点击谁/触发了哪个事件/，this就是点击/触发了的那个对象
+       * 4.举列子：使用this以后，当我们在页面上点击张三的时候，触发了onclick事件，紧接着会调用函数，
+       *   此时的this是指张三lis[0]==> i=0 this=lis[0] function里的方法体/执行语句就是 alert(lis[0].innerText) 
+       * 5.绑定事件就是当我们用鼠标在html页面（在js里是元素对象）上操作（点击/获得焦点/失去焦点）的时候，js按照不同的操作发出/调用的指定的功能（函数）
+      */
+
+      /** 二
+       * 1.window 是全局对象，最大的对象。当我们看到不需要前缀对象就可以调用方法的时候=直接调用方法，它的对象就是window。window对象的方法/属性可以默认不写前缀window
+       * 2.window的方法还有： parseInt（） parseFloat（）
+       * */
+
+      function fn() {
+        console.log(this); //Window
+      }
+      fn();
+
+      this.a = 1; //给window这个全局对象增加一个属性a，属性值是1
+
+      var str = "55haha";
+      console.log(parseInt(str)); //55 取出字符串里以整数开头的部分
+
+      var str1 = "2.3hello";
+      console.log(parseFloat(str1)); //2.3  取出字符串里以小数开头的部分
+
+      /** 三
+       * 1.事件里on表示当。。的时候
+       * 2.为什么把script放到body最底下/最末尾？因为程序自上而下执行，单线程。上面不执行完，下面是不会开始执行的；
+       *  而且在使用6种查找方式的时候，如果不先把html执行/加载完成，查找方式是不能执行，找不到对象，出现错误
+       *  先保证页面结构，再进行页面功能
+       * 3.window.onload 可以放在开头里<head><script>里，表示当页面内容加载完毕以后，再执行。。。函数里的代码
+       * window.onload写在前面不会影响后面程序运行
+       */
+    </script>
+  </body>
+</html>

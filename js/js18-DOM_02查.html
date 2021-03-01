@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .red {
+        color: red;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="list1">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <ul id="list2">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+
+    <script>
+
+      var list2=document.getElementById("list2")
+      var li=list2.getElementsByTagName("li")
+      for(var i=0;i<li.length;i++){
+        li[i].className="red"
+      }
+
+      var color=list2.li
+      console.log(color);
+
+
+
+      /* //给list2里的每个li加上class名为red
+      //方法一 先 找到-->定位-->选中-->操作（增加class .red改变样式）
+      var ele = document.querySelectorAll("#list2 li");
+      console.log(ele);
+      for (var i = 0; i < ele.length; i++) {
+        //ele[i].className = red; 这里是指名字为red，要加“ ”
+        ele[i].className = "red";
+      } */
+
+  
+  
+  
+  
+  
+  
+  
+      /*       
+   // document.querySelectorAll
+    把class全部改为abc
+    <div class="box" id="title">
+      <div class="aaa"></div>
+    </div>
+    <div>world</div> 
+    
+    <script>
+      var ele=document.querySelectorAll("div")
+      console.log(ele);//全选中
+      console.log(ele[0].className);
+      for(var i=0;i<ele.length;i++){
+        ele[i].className="abc"
+      }
+      console.log(ele);
+ 
+   //document.querySelector()
+    var ele=document.querySelector("#b_red") //通过 #id名是string 带引号“ ”
+    console.log(ele);
+    var ele1=document.querySelector(".box")// 通过 .class名字选择
+    console.log(ele1);//querySelector 只返回找到的第一个
+    var ele2=document.querySelector(".container #b_red")// css选择器 子父级 嵌套！
+    console.log(ele2); //子父级嵌套 父级class名为container 下面子级id名为b—red
+    var ele3=document.querySelector("div #b_green")
+    console.log(ele3);//父级标签div下 子级id名为b-green
+   
+   //document.getElementsByName()
+    var ele= document.getElementsByName("hush")
+    console.log(ele);//ele是数组  [div#01.box]
+    console.log(typeof(ele));//object
+    console.log(ele[0]);//查看名为ele数组里的第一个元素
+ 
+    // byTagName  vs   byName 
+
+    //document.getElementsByTagName
+        var ele=document.getElementsByTagName("div")
+        console.log(ele);//返回的是全部的div标签
+
+    // document.getElementsByClassName
+        var ele=document.getElementsByClassName("box")
+        console.log(ele);//[div#01.box, div#02.box]返回的是数组 ele此时是数组
+        console.log(ele[1]);//按照数组访问下角标的方式去取值
+        console.log(ele[1].id);//02 数组里的元素是对象，因此有对象的属性
+
+        var ele2=document.getElementsByClassName("container")
+        console.log(ele2);//[div.container] 
+        console.log(ele2[0]);// 
+        console.log(ele2.className);//undefined 哪怕数组里只有一个元素，也要按照数组访问下角标的方式去取值
+        console.log(ele2[0].className);//container 
+   
+    // document.getElementById
+        var ele=document.getElementById("01");
+        console.log(ele);//<div class="box" id="01" >hello</div> 拿到div整条元素
+        console.log(typeof(ele)); //object  证明ele是对象
+        console.log(ele.id);//01 既然ele是对象，那么div开始标签里的属性可以看作对象里的键值对 key：value
+        console.log(ele.className);//box  既然ele是对象，可以按照对象.属性 object.key 去查看访问value
+
+        // var ele2=document.getElementById(b_red) id名字是string，所以要加 “ ” 此处的id是指id名字 id=“ ”
+        var ele2=document.getElementById("b_red");
+        console.log(ele2);
+        ele2.className="sm_box"
+        console.log(ele2.className);
+
+ */
+    </script>
+  </body>
+</html>

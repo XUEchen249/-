@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>js20-table作业</title>
+    <style>
+      table {
+        border: 2px solid blueviolet;
+        height: 80px;
+        width: 500px;
+        border-collapse: collapse; 
+      }
+      td {
+        border: 2px solid rgb(32, 21, 21);
+        height: 50px;
+        text-align: center;
+      }
+      tr {
+        border: 2px solid yellow;
+        height: 70px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 用js写出table表格  不用html写 -->
+    <script>
+      var jsonData = [
+        { name: "张三", age: 20, salary: 5000, address: "上海" },
+        { name: "李四", age: 22, salary: 6200, address: "北京" },
+        { name: "王五", age: 35, salary: 3360, address: "青岛" },
+        { name: "赵六", age: 46, salary: 8850, address: "杭州" },
+      ];
+
+      /**
+       * ! 对象的for in取值
+        for(var key in jsonData[1]){
+                console.log(key);//取出所有属性名key
+                console.log(jsonData[1][key]);//取出所有属性值value
+
+            } */
+      /**
+       * *要用js写出像用html内的table，首先要脑子里有html里面的table整体代码，顺序步骤
+       * *1.画table框
+       * *2.画表头
+       * *2.1 画行table row <tr> 先画表头
+       * *2.2给表头里加单元格，写入内容
+       * *3.画单元行
+       * *循环套循环 脑子里要有模拟画表格的动态 先画行tr-->再在行里画格子td
+       * */
+
+      //1.table  js里没有<table>，需要创建，放到body里
+      var table = document.createElement("table"); //创建
+      document.body.appendChild(table); //放到body里  它会在script之后，因为appendChild（）把子级追加到末尾
+
+      //方法二 写表头
+      var tr = document.createElement("tr");
+      table.appendChild(tr);
+
+      for (var key in jsonData[0]) {
+        var td = document.createElement("td");
+        tr.appendChild(td);
+        td.innerHTML = key; //此处key是变量，不要加“”引号
+        //td.innerHTML="key" 此处错误，加了引号，key就变成了字符串，失去了变量的功能
+        // console.log(key);//key
+      }
+
+      //画单元行 & 行内画 格子
+       /**
+        * *先画行，第一个外套for循环 是根据jsonData数组里的元素个数画行数
+        * *=>数组里的元素个数决定表格的行数，数组里有几个元素，表格里就有几行tr （不包括表头）
+        * */
+       
+        for (var i = 0; i < jsonData.length; i++) {
+            var tr = document.createElement("tr");
+            table.appendChild(tr);  
+        /**
+        * *再在行里画格子td 使用 内嵌的for in循环，因为数组里的元素是对象类型，所以对象里的属性个数就决定有几个格子
+        * *=>对象里有几个属性/键值对，就画几个格子td
+        * !这里是jsonData[i]
+        * *对象取值  obj.name //xue  
+        * * for in 循环里：1. obj[key] //取value值   2.key //取属性值 单写一个 不加[] 不加“”   
+        * !jsonData[i][key]
+        */
+            for (var key in jsonData[i]) {
+            var td = document.createElement("td");
+            tr.appendChild(td);
+            td.innerHTML=jsonData[i][key] //正确
+            //td.innerHTML=[key] //错误
+            //td.innerHTML=jsonData[key] //错误
+            }
+        }
+
+      /* //方法一 写表头
+        //2.1 tr table heading
+            var tr=document.createElement("tr") //创建 表头行
+            table.appendChild(tr) //放到table里 不设置css的话，看不出来tr，但是在浏览器的elemnts里可以看到编码tr被添加进去了
+        
+        //2.2 给tr里面加 td 单元格&数据  有td吗？--没有，创建-放入
+            var td=document.createElement("td")
+            tr.appendChild(td)
+        //2.3 要画几个单元格？取决于对象里有多少个属性   表头单元格里的数据（写什么内容）取决于jsonData里属性的属性名
+            td.innerHTML="name"  //第一个单元格里的内容写好了
+        //至此，表头里第一个单元格写好了，jsonData里一共有四个属性，那么还需要重复上面的步骤写三遍： 创建单元格td--放入tr--给td里写入内容/数据
+            var td=document.createElement("td")
+            tr.appendChild(td)
+            td.innerHTML="age" 
+
+            var td=document.createElement("td")
+            tr.appendChild(td)
+            td.innerHTML="salary" 
+
+            var td=document.createElement("td")
+            tr.appendChild(td)
+            td.innerHTML="address" 
+        //至此 表头全部写完  这四个表头是可以用for循环写 */
+    </script>
+  </body>
+</html>

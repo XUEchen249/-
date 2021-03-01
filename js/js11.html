@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UT-F8" />
+    <title>js11</title>
+  </head>
+
+  <body>
+    <script>
+      /* var a = "hello mama";
+       //关键词没找到返回-1
+       var index=a.indexOf("baba")
+       console.log(index);//-1
+
+       //判断关键词也没有找到
+       if(a.indexOf("baba")!=-1){
+        alert("找到了")
+       }else{
+           alert("没找到")
+       } */
+
+      /* var words = [
+        "转账",
+        "借钱",
+        "身份证",
+        "支付",
+        "银行卡",
+        "充话费",
+        "密码",
+        "验证码",
+        "贷款",
+       
+      ];
+      var answer = "给我借钱";
+      //var index = answer.indexOf(word[i]);
+     //for (var i = 0; index < word.length; i++) {
+      for (var i = 0; i < words.length; i++) {
+        if (answer.indexOf(words[i])!=-1) {
+          alert("不安全");
+         break//找到符合要求的以后，不再if不再往后走了  for里的break代表退出循环
+          //break放在if里和if外有 区别
+        } 
+        // break; 放在这里，会导致第一次循环，程序就退出
+      } */
+
+
+      //toFixed 
+      var a=2.768466
+      a=a.toFixed(2)
+      console.log(a);
+
+      var b=7
+      b=b.toFixed(3)
+      console.log(b);
+
+      //Number
+      var c="56.39"
+      console.log(Number(c)); //string->number
+
+      var num="5.3m" //必须是纯数字
+      console.log(Number(num));//Nan 
+
+      var h=true
+      console.log(Number(h));
+
+      var j=""
+      console.log(Number(j));
+
+      //subString截取字符
+      var str="bonjour"
+      str2=str.substring(3)
+      str3=str.substring(1,4)
+    
+      console.log(str2);
+      console.log(str3);
+      console.log(str+str2+str3);
+
+
+      //split
+      var i="nice to meet you"
+      var o=i.split("")
+      var p=i.split("e")
+      console.log(o);
+      console.log(p);
+
+    </script>
+  </body>
+</html>

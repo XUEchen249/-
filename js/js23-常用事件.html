@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js23-常用事件</title>
+</head>
+<body>
+    <!-- <div id="box" style="height: 500px;width: 500px;background-color: rgb(226, 238, 118);"></div> -->
+    <input id="box"/>
+
+    <script>
+       var box=document.getElementById("box")
+           box.onkeydown=function(){
+              console.log("键盘按下键");  
+            }
+            box.onkeyup=function(){
+              console.log("键盘松开 键");  
+            }
+            box.onkeypress=function(){
+              console.log("键盘press");  
+            }
+            box.onkeypress=function(e){
+                if(e.keyCode==13){     //用keyCode==13判断 ！keyCode C是大写 e在这里专用
+                    alert("输入完成")
+                }
+            }
+     
+
+        /**
+         * 先学vue，再学react，每个至少一个月多，学的深一点 
+         * 1.onclick不是事件名，click才是事件名，on只是前缀，代表一种状态：在xx的时候，当xx的时候
+         * 2.on+事件名=事件处理函数  onclick是事件处理函数  click是事件名
+         * 3.常见事件：（on+）click  focus  blur  change |前四个重点常用|  mouseover  mouseout  mousemove  scroll  keydown keyup keypress 
+         * 4.onchange：
+         * -当表单的值发生变化的时候，触发change事件
+         * --change和blur事件不同。只有输入框里的值改变的时候，才是change。值不改变，光标进来进去不会触发change。
+         * --change只在乎输入框里的值有没有被改动，不在乎鼠标点进点出的。 blur和focus在乎的是光标进来进去
+         * --在select里也是，如果连续两次/好几次点击同一个选项，是不会触发change事件的。连续点击paris选项，不触发change，然后再点击tours会触发，因为选项框里的值value发生变化了
+         * 5.mouseover mouseout mousemove
+         * -当鼠标进入/滑入/掠过（某个区域）的那一瞬间  mouseout 鼠标滑出的那一瞬间  mousemove鼠标在这个区域里滑动，滑来滑去
+         * -当鼠标移入指定区域的时候，会触发onmouseover，进入后，在这个区域内来回瞎划是不会触发mouseover的，只会触发mousemove，当鼠标滑出这个区域，mouseout事件触发
+         * -鼠标进入区域mouseover，进入后，鼠标在区域内来来回回的滑动mousemove，最后鼠标滑出区域mouseout
+         * --用于网页上/淘宝的图片放大镜特效 获取鼠标当前位置
+         * 6.scroll：
+         * -鼠标滚动事件
+         * 7.键盘事件
+         * -keydown 键盘按下任意键的时候，就会触发keydown   enter/字母/任意键都可以，只要是键盘上的键
+         * -keyup  松开按键的时候
+         * -keypress 键盘按下任意键的时候
+         * --keydown & keypress 的区别： 当键被按的时候 keydown正在向下按的时候，keypress是按到底/完全按下去的时候   先是keydown再keypress
+         * ---如何判断 按下enter键代表输入完成？ e.keyCode==13 每个按键都有keyCode，enter按键的keyCode是13，只要判断是不是等于13就好
+         * 
+         * 
+         */
+
+
+        /*  
+        //4.change
+
+                <select id="user">
+                <option >paris</option>
+                <option >tours</option>
+                <option >nice</option>
+                </select> 
+
+                var user=document.getElementById("user")
+                user.onchange=function(){
+                    console.log("the value is changed ="+this.value); //select的value就是选择项option的value，而且如果option在开始标签里没有给value，默认为选项里的文字内容；如果option标签里给了value，那么就使用给定的value内容
+                } 
+        
+        //5.mouse
+                var box=document.getElementById("box")
+            box.onmouseover=function(){
+                console.log("鼠标进入啦");
+            }
+            box.onmouseout=function(){
+                console.log("鼠标出去了");
+            }
+            box.onmousemove=function(){
+                console.log("鼠标一直在滑动");
+            }
+        //6.scroll
+           //box.onscroll=function(){ //只是给绿色块设置滚轮事件
+           document.body.onscroll=function(){ //给全屏设置滚轮事件
+                console.log("滚了");
+            }
+        */
+    </script>
+    
+</body>
+</html>
