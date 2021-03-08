@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>下课倒计时</title>
+</head>
+<body>
+    <h1 id="clock"></h1>
+
+    <script>
+
+        var h1=document.getElementById("clock")
+        //首先，算出时差
+
+        function calcu(){
+            var now=new Date() //当前时间
+            var target=new Date("2021-3-3 24:00:00")
+            var ms=target-now
+            var h=Math.floor(ms/1000/60/60)
+            h=h>10?h:"0"+h
+            var min=Math.floor((ms-h*60*60*1000)/60/1000)
+            min=min>10?min:"0"+min
+            var sec=Math.floor((ms-min*60*1000-h*60*60*1000)/1000)
+            sec=sec>10?sec:"0"+sec
+            if(sec%2==0){                                       //if取余数，让：不断闪动
+                h1.innerText=("距离下课还有"+h+":"+min+":"+sec)  //在页面上显示 
+            }else{
+                h1.innerText=("距离下课还有"+h+" "+min+" "+sec)  
+            }
+              
+
+        }
+        //倒计时的时差已经在页面上显示，可是是死的，需要每次刷新才能显示新的时差
+        //如何让时差在页面上自动变化，每隔一秒（1000），时差自动刷新 （calcu）
+        
+        //定时器并不是倒计时器  定时器（周期性）就是在指定的时间内，反复做什么事
+        //定时器是在指定的时间让函数执行 执行一次/反复
+        //此时，使用定时器，让calcu每隔一秒就计算一次时差,每隔一秒，就调用一次calcu函数来计算时差
+
+            var timer=null
+            timer=setInterval(calcu,1000) //每隔1秒，就执行calcu函数
+
+        
+        
+    </script>
+</body>
+</html>

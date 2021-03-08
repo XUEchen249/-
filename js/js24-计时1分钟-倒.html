@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>js24-倒计时-一分钟</title>
+    
+</head>
+<body>
+        <button id="btn">1min</button>
+    <script>
+        var btn=document.getElementById("btn")
+        var sec=6
+        var timer
+        
+        btn.onclick=function(){
+           timer=setInterval(fn,1000)
+        }
+        
+        function fn(){
+            if (sec>0) {
+                sec--
+                btn.innerHTML=sec+"s"
+
+            }else{
+                clearInterval(timer)
+                timer=null
+                btn.innerHTML="1min"
+                sec=6 //！这里是重点！ 等计时完后，让时间恢复到起始
+            }
+        }
+
+    </script>
+</body>
+</html>

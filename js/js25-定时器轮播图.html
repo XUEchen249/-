@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>js25-定时器轮播图</title>
+</head>
+<body>
+    <div style="height: 200px;width: 200px;margin: auto;">
+        <img id="img" src="../css/js25-轮播图01.jpg" width="100% "/>
+        <button id="btn" style="height: 30px;width: 100px;">start</button>
+    </div>
+
+    <script>
+        var btn=document.getElementById("btn")
+        var img=document.getElementById("img")
+        var timer
+        var arr=["../css/js25-轮播图01.jpg","../css/js25-轮播图02.jpg","../css/js25-轮播图03.jpg","../css/js25-轮播图04.jpg",]
+
+        //when i click button , the image will change
+        btn.oncilck=function(){
+           timer= setInterval(fn,1000)            
+        }
+
+        function fn(){
+            var i=1
+            i++
+            if(i<5){
+                img.src=arr[i]
+            }
+        }
+
+        
+    </script>
+</body>
+</html>

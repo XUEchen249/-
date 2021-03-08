@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js24 Countdown</title>
+     <!-- <link rel="stylesheet" href="../css/js24-倒计时作业.css"">  -->
+     <style>
+       *{margin: 0;padding:0}
+#stp {
+  height: 50px;
+  width: 100px;
+  font-size: 30px;
+  background-color: rgb(245, 176, 190);
+  text-align: center;
+  line-height: 50px;
+  border-radius: 20%;
+}
+#start {
+  height: 50px;
+  width: 100px;
+  font-size: 30px;
+  background-color: rgb(176, 247, 208);
+  text-align: center;
+  line-height: 50px;
+  border-radius: 20%;
+  margin-left: 90px;
+}
+.container{
+  
+  margin-left: 50px;
+  height: 300px;
+  width: 350px;
+  background-color: rgb(250, 247, 247);
+  padding-top: 50px;
+  padding-left: 50px;
+}
+
+.top{
+ 
+ 
+  margin-bottom: 50px;
+}
+
+#h1{
+  padding-top: 20px;
+  padding-left: 50px;
+ 
+}
+     </style>
+    
+
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        
+        <h1 id="h1"></h1>
+      </div>
+
+      <div class="bas">
+        <button id="stp">stop</button>
+        <button id="start">start</button>
+      </div>
+    
+
+    <script>
+       var h1=document.getElementById("h1")
+       var stp = document.getElementById("stp");
+       var start = document.getElementById("start");
+       var h1 = document.getElementById("h1");
+       var now=new Date("2021-03-06 20:00:00").getTime()  //开始时间点 换算成毫秒 方便后面进行加减
+       var end=new Date("2021-03-06 21:00:00").getTime()  //结束时间点
+       var ms=end-now  //计算出相差时间 结束时间-开始时间=相差的时间段  20h开始上课，21h结束，这堂课一共60min 
+       var timer=null //定时器timer
+
+       //打开页面开始加载，倒计时开始
+       window.onload=function(){
+        timer= setInterval(fn,1000)
+       } 
+        function fn(){
+         if(ms>=0){  
+            ms=ms-1000  //！每自动执行一次定时器，时间差就会自己减去1000毫秒（也就是每隔1秒执行一次定时器，时间差就会自己减少1秒）
+            var h=Math.floor(ms/1000/60/60) //计算出相差的小时数
+            h=h>10?h:"0"+h
+            var min=Math.floor((ms-h*60*60*1000)/60/1000)//计算出相差的分钟数
+            min=min>10?min:"0"+min
+            var sec=Math.floor((ms-min*60*1000-h*60*60*1000)/1000) //计算出相差的毫秒数
+            sec=sec>=10?sec:"0"+sec
+            if(sec%2==0){
+                h1.innerText=("距离下课还有 "+h+":"+min+":"+sec)  //在页面上显示 
+            }else{
+               h1.innerText=("距离下课还有 "+h+" "+min+" "+sec)
+            }
+          }else{  //如果倒计时结束 时间差值是0（时间差自己减少到0）
+            clearInterval(timer)  //停止定时器，停止时间差自己相减
+          timer=null
+          h1.innerText=("下课啦")
+         }
+       }
+
+        //当点击暂停键时
+       stp.onclick=function(){
+         clearInterval(timer)  //停止定时器timer 停止时间差自己减1秒
+         timer=null
+        }
+       
+       //当点击开始键的时候
+       start.onclick=function(){ 
+         timer= setInterval(fn,1000)  //开始定时器timer 开始让时间差自己减1秒
+       }
+
+     
+
+
+       
+    </script>
+  </body>
+</html>

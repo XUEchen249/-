@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>tp-js2</title>
+    <link rel="stylesheet" href="../css/js22-style01.css" />
+    <style>
+
+    </style>
+</head>
+<body>
+    <ul class="tab">
+        <li class="act">xue</li>
+        <li>mama</li>
+        <li>papa</li>
+        <li>amis</li>
+        <div style="clear: both;"></div>
+    </ul>
+    <ul class="content">
+        <li style="display: block;">on l'attend depuis une demi heure</li>
+        <li>mais elle a oublie qu'on dine tous ensemble ce soir</li>
+        <li>il n'y a plus une seule assiette propre dans lavabo</li>
+        <li>je te propose de venir a l'appart demain</li>
+        <div style="clear: both;"></div>
+    </ul>
+
+    <script>
+        var acts=document.querySelectorAll(".tab li")
+        var contents=document.querySelectorAll(".content li")
+
+       for(var i=0;i<acts.length;i++){
+        acts[i].index=i
+        acts[i].onclick=function(){
+            //先全部清除样式
+            for(var i=0;i<acts.length;i++){
+                acts[i].className=""
+            }
+            for(var i=0;i<contents.length;i++){
+                contents[i].style.display="none"
+            }
+
+            //点谁，显示谁
+           contents[this.index].style.display="block"
+           this.className="act"
+        }
+       }
+
+       /**
+        * 1.每个循环都写i会相互影响吗？
+        *-首先在函数里面的i（局部变量）和外面的i（全局变量）不同
+        *-函数里的循环也是先走完/完成第一个for里面的i，再走下一个for循环，第一个走完的时候，第二个循环里的i会覆盖第一个循环里的i js自上而下的运行
+        *-所以，不会相互影响 
+        * 2.function里还可以放循环？
+        *-可以啊 绑定事件里的还能输不就是决定在事件被触发以后（li被点击以后）要怎么做/做什么事/有什么动作/出现or实现什么功能
+        * 3. 思路：
+        **当点击标题acts[i]的时候，出现相对应的内容contents[i]==>两个i同步
+        *?为了两个i同步，如何让contents[i]和acts[i]一样？
+        *!先记录下act里i每次循环的下角标/数字，这样就可以给content用
+        *!!记录i每次循环的数字当作下角标==>act.index=i  act的属性随便加，想使用i的时候，直接调用属性act.index输出的属性值就是i
+        *-js里拿到所有的li
+        *-给每个标题绑定onclick事件，而且定义功能function。当点击标题时，会发生什么事？当触发onclick事件的时候，会发生什么动作/功能/函数 （绑定时间里的函数就是功能）
+        *-写function：先给所有标题和内容的样式全部清除，再点击谁，给谁加样式，让谁显示
+        *!♥这里正确的顺序是：当点击标题的时候，函数里：先把所有li的自带样式清除，再给指定的li加样式 ==>先清除，再加样式
+        *-如果先给指定li加样式，再清除其他的li的样式就不对了。因为自上而下，最后再清除其他样式的时候，会把刚才加的样式也清除了
+       */
+
+
+
+
+
+
+
+
+        /*  for(var i=0;i<acts.length;i++){
+            acts[i].index=i
+            acts[i].className=""
+            acts[i].onclick=function(){
+                contents[this.index].style.display="none"
+            }
+        }
+        //点谁，谁显示
+         //先让样式全部消失，再 点谁，给谁加上样式
+        this.className="act"
+        contents[this.index].style.display="block" */
+
+
+    </script>
+</body>
+</html>

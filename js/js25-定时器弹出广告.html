@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js25-定时器广告</title>
+    <style>
+      #box {
+        height: 284px;
+        width: 300px;
+        position: fixed;
+        right: 0;
+        /* bottom:0px;  出现*/
+        bottom:-284px; /* 消失 */
+      }
+      #btn{
+          position: absolute;
+          top: 0;
+          right: 0;
+
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="box">
+      <img src="../css/js25-广告图.jpg" width="100% " />
+      <button id="btn">X</button>
+    </div>
+    
+
+    <script>
+      /**
+       * 要求：表情包自己弹出向上滑，然后点关闭，就自己往下滑直到消失
+       * 1.这里表情包的格式得是jpg/png..反正不能放gif
+       * 2.img的图片等比缩放 img里的百分之是针对父级 width：100%是指img的宽度是父级的宽度的100%，父级宽度300px，img的宽度也是300px，img的高度也随之等比缩放，不变行
+       */
+
+       var btn=document.getElementById("btn")
+       var box=document.getElementById("box")
+       var timerMoveUp=null
+       var timerMoveDown=null
+
+       function moveUp(){
+        if(box.style.bottom<0){
+            bottom+=10+"px"
+        }
+       }
+    //    window.onload=timerMoveDown(moveUp,10)
+    window.onload=function(){
+        timerMoveDown=setInterval(moveUp,10)
+    }
+
+
+    </script>
+  </body>
+</html>

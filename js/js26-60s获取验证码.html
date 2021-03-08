@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js26-获取验证码</title>
+</head>
+<body>
+    <button id="btn">获取验证码</button>
+
+    <script>
+        var btn=document.getElementById("btn")
+        var timer1=null
+       // var timer2=null 不需要
+        //var jugement=false 不需要
+        var sec=5 //！放到全局
+        btn.onclick=function(){
+            timer1=setInterval(clock,1000)
+            /* if(jugement=true){
+                timer2=setInterval(clock,1000)
+                jugement=true
+            }else{
+                timer1=setInterval(clock,1000)
+                jugement=true
+            } */
+            
+        }
+        //60s的倒计时
+        function clock(){
+            //var sec=60  sec在这里声明的话，每隔1秒执行一次函数，都会重新把sec声明一次，sec都从60开始，所以每次的结果都一样
+            if(sec>0){
+                sec=sec-1 //sec--
+                
+                btn.innerHTML=sec+" 秒后重新获取"
+                
+                btn.style.cursor="not-allowed" //光标变成禁止
+                btn.setAttribute("disabled","disabled")  //btn有个属性 disabled="disabled" 表示不能点击按钮
+            }else{
+                clearInterval(timer1)
+                timer1=null
+                btn.removeAttribute("disabled","disabled")
+                //变成小手
+                btn.style.cursor="pointer"
+                btn.innerHTML="获取验证码"
+                sec=5 //!!这里太重要了！ sec是全局变量，当定时器最后走到这里的时候，n是0，如果不给它重新赋值5的话，那么再次点击的时候，n是从0开始，又直接跳到else的部分，所以点不动。这里和n在for循环后出来的值是一样的原理！！
+            }
+
+        }
+
+
+        
+
+        
+
+        /**
+         * 1.点击完 按钮以后， 文字 获取验证码 变成 59..秒后重新获取 && 不能点
+         * 2.等59秒以后，才恢复成 获取验证码&&可以点击
+        */
+
+
+
+        /* 1. //多个定时器声明  用数组
+         var timerList=[null,null,null,null]
+         console.log(timerList[0]); //null  ==> timerList[0]=null && timer=null
+         timerList[0]=setInterval(function(){console.log("hello");},1000)
+         timerList[1]=setInterval(function(){console.log("hello");},1000)
+         timerList[2]=setInterval(function(){console.log("hello");},1000)
+         timerList[3]=setInterval(function(){console.log("hello");},1000) */
+
+         /* function creat(name,age){
+            var obj={}
+            obj.name=name
+            obj.age=age
+            return obj  //！！function里的return很重要
+        }
+        console.log(creat("xue",28)); */
+    </script>
+</body>
+</html>

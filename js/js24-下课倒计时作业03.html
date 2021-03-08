@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>js24 Countdown</title>
+   <link rel="stylesheet" href="../css/js24-倒计时作业.css""> 
+    
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <h1 id="title">现在距离下课还有</h1>
+        <h1 id="h1"></h1>
+      </div>
+
+      <div class="bas">
+        <button id="stp">stop</button>
+        <button id="start">start</button>
+      </div>
+    </div>
+
+    <script>
+      var stp = document.getElementById("stp");
+      var start = document.getElementById("start");
+      var h1 = document.getElementById("h1");
+      var stopDate;
+      var startDate
+      var target = new Date("2021-3-8 23:00:00");
+      var targetMs=target.getTime() //拿到截止日期毫秒数
+      var jugement = true; //第一次点击stop
+      var timerGoRun = null; //！拿出来，公用
+      var timerGoStart = null; //！拿出来 公用 函数里声明的变量是局部变量，只能在这个函数里使用，不能拿到外部（全局）使用。 全局变量，大家人人都可以用。局部变量，只有局部可以用。
+
+      function goRun() {
+        var now = new Date(); //现在时间
+
+        var ms = target - now; //时差
+        var h = Math.floor(ms / 1000 / 60 / 60);
+        h = h < 10 ? "0" + h : h;
+        var m = Math.floor((ms - h * 1000 * 60 * 60) / 60 / 1000);
+        m = m < 10 ? "0" + m : m;
+        var s = Math.floor((ms - h * 1000 * 60 * 60 - m * 60 * 1000) / 1000);
+        s = s < 10 ? "0" + s : s;
+        h1.innerText = h + ":" + m + ":" + s;
+      }
+
+      window.onload = function () {
+        timerGoRun = setInterval(goRun, 1000);
+      };
+
+      //以上↑，正常情况倒计时写完
+
+      //暂停
+      stp.onclick = function () {
+        if (jugement == true) {
+          clearInterval(timerGoRun); //!这里 第一次点击stop的时候，关闭的是最初打开页面的定时器timerGoRun
+          timerGoRun = null;
+          jugement = false; //！这里 当第一次点击stop以后，后面再次点击stop的时候，关闭的都是start的定时器
+          stopDate = new Date();
+          //console.log("第一次暂停" + stopDate);
+        } else {
+          clearInterval(timerGoStart);
+          timerGoStart = null;
+          stopDate = new Date();
+         // console.log("再次暂停" + stopDate);
+        }
+      };
+
+      //暂停后开始
+      start.onclick = function () {
+        startDate = new Date();
+        timerGoStart = setInterval(goStart, 1000);
+      };
+
+      function goStart() {
+
+        var now=new Date().getTime()
+      /*   //计算出暂停了多久的时间差=开始时间毫秒数-上次结束时间毫秒数
+        var diffTime=startDate.getTime()-stopDate.getTime()
+        //给目标时间加上暂停时间差
+        target=targetMs+diffTime
+        */
+        var ms = target - now;  //如果把每次暂停的时间记录下来--now，可以，但是now就成为一个死值，定时器每次执行让target减去的now是固定不变的，还是上次暂停时候的时间，这样的话，页面会显示不动，其实程序一直在走，只是每次都是9-2=7现实的内容都一样，使用看着像不动
+       
+       
+        var h = Math.floor(ms / 1000 / 60 / 60);
+        h = h < 10 ? "0" + h : h;
+        var m = Math.floor((ms - h * 1000 * 60 * 60) / 60 / 1000);
+        m = m < 10 ? "0" + m : m;
+        var s = Math.floor((ms - h * 1000 * 60 * 60 - m * 60 * 1000) / 1000);
+        s = s < 10 ? "0" + s : s;
+        h1.innerText = h + ":" + m + ":" + s;
+        
+      } 
+
+       /*  var interval=startDate-stopDate //计算出暂停了多久，暂停时间是毫秒数ms
+         
+         //把target转换成ms，给它加上暂停时间
+         target.setTime(target.getTime()+interval)
+         
+         now.setTime(now)
+         */
+
+      /**
+       * 作业：
+       * 1.写一个距离下课的倒计时countdown，页面中显示距离下课还有几时几分几秒
+       * 2.如果下课了，就直接显示下课了
+       * 3.加一个暂停按钮，再加一个开始按钮
+       * 4.中途可以点击暂停，让计时器停止计时，然后再点开始按钮，接着暂停前开始计时 ，暂停的时间段不计算在内
+       * 5.比如：一堂课60min，从3点开始。3h30我点了暂停，停止了10min。3h40然后点开始按钮，接着倒计时。
+       * 本应该在4h结束倒计时，但是暂停时段没有计算在内，所以4h10倒计时才结束
+       *
+       *
+       */
+    </script>
+  </body>
+</html>
